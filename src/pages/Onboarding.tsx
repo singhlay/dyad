@@ -91,13 +91,14 @@ const Onboarding = () => {
 
       {/* Modal */}
      {/* Modal */}
-{selectedStep && (
+ {selectedStep && (
   <div 
     className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
     onClick={() => setSelectedStep(null)} // Close when clicking outside
   >
     <div 
-      className="bg-white rounded-lg max-w-2xl w-full p-6 relative mt-8"
+      className="bg-white rounded-lg max-w-2xl w-full p-6 relative mt-8  "
+      style={{ border: `2px solid ${selectedStep.color}` }}
       onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
     >
       {/* Number circle positioned at top center of container */}
@@ -109,7 +110,7 @@ const Onboarding = () => {
       </div>
 
       {/* Content */}
-      <div className="mt-4">
+      <div className="mt-4 text-center">
         <h3 className="text-xl font-bold text-gray-800 text-center">{selectedStep.title}</h3>
         <p className="text-gray-600 mt-4">{selectedStep.description}</p>
       </div>
