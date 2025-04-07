@@ -71,7 +71,7 @@ background:
 }
 
 .btn-primary {
-  @apply px-4 md:px-6 py-2 md:py-2.5 bg-primary text-white font-medium rounded-md hover:bg-blue-700 transition-colors text-sm md:text-base;
+  @apply px-4 md:px-6 py-2 md:py-2.5 bg-primary text-white font-medium rounded-sm hover:bg-blue-700 transition-colors text-sm md:text-base;
 }
 
 .btn-submit {

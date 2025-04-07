@@ -95,7 +95,7 @@ const Onboarding = () => {
      {/* Modal */}
  {selectedStep && (
   <div 
-    className="fixed inset-0  flex items-center justify-center p-4 z-50"
+    className="fixed inset-0 bg-black bg-opacity-20 backdrop-blur-[1px] flex items-center justify-center p-4 z-50"
     onClick={() => setSelectedStep(null)} // Close when clicking outside
   >
     <div 
