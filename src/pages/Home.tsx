@@ -3,6 +3,7 @@ import { ChevronRightCircle as CircleChevronRight, Linkedin, Mail, Phone, MapPin
 import { Link, useLocation } from 'react-router-dom';
 import { LogoDark, img1, img2, img3, img4, img5, img6 } from '../assets/images/index.ts';
 import ServiceModal from '../components/ServiceModal.js';
+import { dyadVideo } from '../assets/videos/index.ts';
 
 interface HomeProps {
   whatWeDoItems: Record<string, string[]>;
@@ -40,30 +41,42 @@ const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose, title, descrip
 
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ title, detail, image, link, onClick }) => {
-  return (
-    <div className="service-card">
+  // Content to be rendered inside or outside of Link
+  const cardContent = (
+    <>
       <img 
         src={image}
         alt={title}
         className="service-image"
       />
-         <div className="service-content">
-                  <h3 className="text-[20px] font-semibold  mb-3">{title}</h3>
-                  <div className='flex justify-between'>
-                    <p className="text-gray-600 mb-4">
-                      {detail}
-                    </p>
-          {link ? (
-            <Link to={link} className="service-learn-more">
-              <CircleChevronRight size={24} />
-            </Link>
-          ) : (
-            <button className="service-learn-more" onClick={onClick}>
-              <CircleChevronRight size={24} />
-            </button>
-          )}
+      <div className="service-content">
+        <h3 className="text-[20px] font-semibold mb-3">{title}</h3>
+        <div className='flex justify-between'>
+          <p className="text-gray-600 mb-4">
+            {detail}
+          </p>
+          <div className="service-learn-more">
+            <CircleChevronRight size={24} />
+          </div>
         </div>
       </div>
+    </>
+  );
+
+  return (
+    <div className="service-card">
+      {link ? (
+        <Link to={link} className="block w-full h-full">
+          {cardContent}
+        </Link>
+      ) : (
+        <button 
+          className="w-full h-full text-left"
+          onClick={onClick}
+        >
+          {cardContent}
+        </button>
+      )}
     </div>
   );
 };
@@ -217,22 +230,45 @@ const Home: React.FC<HomeProps> = ({ whatWeDoItems }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      <section className="hero-section flex justify-center items-end text-white pt-24 md:pt-32">
-        <div className="max-w-[1300px] mx-auto px-4 md:px-8">
-          <h1 className="text-[36px] md:text-[48px] lg:text-[60px] leading-[1.2] mb-4 md:mb-6 text-center transition-all duration-500 hover:scale-110 font-semibold">
-            A Bold Partnership Model<br />
-            For Smarter Healthcare Operations
-          </h1>
-          <p className="text-[16px] md:text-[18px] lg:text-[24px] mb-8 clamped-text transition-all duration-500 hover:scale-110 font-normal ">
-            We're rewriting the rules. By uniting industry expertise, innovative technology, and operational risk controls, we're introducing a new model of integration that streamlines operations and cuts costs. We provide the tools for physicians to thrive, maintain autonomy, and operate without the complexities of traditional management models.
-          </p>
-        </div>
-      </section>
+     <section className="relative min-h-[320px] md:min-h-[400px] lg:min-h-[700px] flex justify-center items-end text-white pt-24 md:pt-32 overflow-hidden">
+  {/* Video background */}
+  <div className="absolute inset-0 z-0 ">
+    <video
+      autoPlay
+      loop
+      muted
+      playsInline
+      className="w-full h-full object-cover"
+      preload="auto"
+    >
+      <source src={dyadVideo} type="video/mp4" />
+      {/* Fallback image if video doesn't load */}
+      <img 
+        src="/assets/images/hero-fallback.jpg" 
+        alt="Background fallback"
+        className="w-full h-full object-cover"
+      />
+    </video>
+    {/* Optional overlay for better text readability */}
+    <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+  </div>
+
+  {/* Content */}
+  <div className="max-w-[1300px] mx-auto px-4 md:px-8 relative z-10">
+    <h1 className="text-[36px] md:text-[48px] lg:text-[60px] leading-[1.2] mb-4 md:mb-6 text-center transition-all duration-500 hover:scale-110 font-semibold">
+      A Bold Partnership Model<br />
+      For Smarter Healthcare Operations
+    </h1>
+    <p className="text-[16px] md:text-[18px] lg:text-[24px] mb-8 clamped-text transition-all duration-500 hover:scale-110 font-normal">
+      We're rewriting the rules. By uniting industry expertise, innovative technology, and operational risk controls, we're introducing a new model of integration that streamlines operations and cuts costs. We provide the tools for physicians to thrive, maintain autonomy, and operate without the complexities of traditional management models.
+    </p>
+  </div>
+</section>
 
       <section id="about" className="py-16 md:py-24 bg-gray-50">
         <div className="max-w-[1440px] mx-auto px-4 md:px-8">
           <h2 className="text-[32px] md:text-[40px] leading-[1.3] font-bold mb-6 text-center">About Us</h2>
-          <p className="clamped-text text-[16px] md:text-[18px] leading-[1.6] text-gray-600 max-w-[960px] mx-auto text-center mb-12 md:mb-16 ">
+          <p className="clamped-text text-[16px] md:text-[22px] leading-[1.6] text-gray-600 max-w-[1240px] mx-auto  mb-12 md:mb-16 ">
             We operate at the intersection of expertise, technology, and trust—bringing deep industry
             knowledge and strategic insight to every engagement. Grounded in transparency and integrity,
             we align with those who prioritize operational excellence and long-term sustainability. Our
@@ -267,7 +303,7 @@ const Home: React.FC<HomeProps> = ({ whatWeDoItems }) => {
       <section id="services" className="py-16 md:py-24">
         <div className="max-w-[1440px] mx-auto px-4 md:px-8">
           <h2 className="text-[32px] md:text-[40px] leading-[1.3] font-bold mb-6 text-center">Our Services</h2>
-          <p className="text-[16px] md:text-[18px] leading-[1.6] text-gray-600 max-w-[960px] mx-auto text-center mb-12 md:mb-16 clamped-text">
+          <p className="text-[16px] md:text-[22px] leading-[1.6] text-gray-600 max-w-[1240px] mx-auto  mb-12 md:mb-16 clamped-text">
             We set the standard for accuracy, efficiency, and value - delivering faster turnarounds,
             unmatched precision, and measurable impact. Backed by rigorous risk controls and
             uncompromising quality, our integrated solutions go beyond excellence to redefine what's
@@ -275,7 +311,7 @@ const Home: React.FC<HomeProps> = ({ whatWeDoItems }) => {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {Object.entries(serviceDetails).map(([key, service], index) => (
-              <div key={index} className="service-card">
+              <div key={index} className="service-card" onClick={() => setSelectedService(key)}>
                 <img 
                   src={[img1, img2, img3, img4, img5, img6][index]}
                   alt={service.title}
@@ -289,7 +325,6 @@ const Home: React.FC<HomeProps> = ({ whatWeDoItems }) => {
                     </p>
                     <button 
                       className="service-learn-more"
-                      onClick={() => setSelectedService(key)}
                     >
                       <CircleChevronRight/>
                     </button>
