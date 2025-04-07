@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {ContactUs} from '../assets/images/index.js'
+import {ContactUs} from '../assets/images/index.ts'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -35,8 +35,8 @@ const Contact = () => {
         <div className="max-w-[1440px] mx-auto px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
-              <h2 className="text-2xl font-semibold mb-6">Providers or Administrators:</h2>
-              <p className="text-gray-600 mb-8">Please Fill Out The Form Below</p>
+              <h2 className="text-2xl font-medium">Providers or Administrators:</h2>
+              <p className="text-2xl font-medium mb-6">Please Fill Out The Form Below</p>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="form-group">
@@ -133,10 +133,11 @@ const Contact = () => {
                     required
                   />
                 </div>
+                
 
                 <button
                   type="submit"
-                  className="btn-primary w-full"
+                  className="btn-submit"
                 >
                   Submit
                 </button>
@@ -144,28 +145,11 @@ const Contact = () => {
             </div>
 
             <div>
-              <img
+              <img 
                 src={ContactUs}
                 alt="Contact Support"
                 className="w-full h-[400px] object-cover rounded-lg shadow-lg mb-8"
               />
-              <div className="bg-gray-50 p-8 rounded-lg">
-                <h3 className="text-xl font-semibold mb-4">Get in Touch</h3>
-                <p className="text-gray-600 mb-6">
-                  Our team is here to help you streamline your healthcare operations and maximize efficiency.
-                </p>
-                <div className="space-y-4">
-                  <p className="flex items-center text-gray-700">
-                    <span className="font-medium mr-2">Email:</span> info@dyadps.com
-                  </p>
-                  <p className="flex items-center text-gray-700">
-                    <span className="font-medium mr-2">Phone:</span> (555) 123-4567
-                  </p>
-                  <p className="flex items-center text-gray-700">
-                    <span className="font-medium mr-2">Address:</span> 123 Healthcare Ave, Suite 100
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
         </div>

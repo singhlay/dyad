@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
-import { Logo } from '../assets/images/index.js';
+import { Logo } from '../assets/images/index.ts';
 
 interface NavbarProps {
   whatWeDoItems: Record<string, string[]>;
@@ -11,7 +11,6 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ whatWeDoItems, onServiceClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDesktopDropdown, setActiveDesktopDropdown] = useState<string | null>(null);
-  const location = useLocation();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById('about');

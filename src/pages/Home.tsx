@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronRightCircle as CircleChevronRight, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { LogoDark, img1, img2, img3, img4, img5, img6 } from '../assets/images/index.js';
+import { LogoDark, img1, img2, img3, img4, img5, img6 } from '../assets/images/index.ts';
 import ServiceModal from '../components/ServiceModal.js';
 
 interface HomeProps {
@@ -26,7 +26,6 @@ interface AboutModalProps {
 
 const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose, title, description }) => {
   if (!isOpen) return null;
-
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
@@ -48,17 +47,19 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, detail, image, link, o
         alt={title}
         className="service-image"
       />
-      <div className="service-content">
-        <h3 className="text-[20px] md:text-[24px] font-semibold mb-3">{title}</h3>
-        <div className='flex justify-between'>
-          <p className="text-gray-600 mb-4">{detail}</p>
+         <div className="service-content">
+                  <h3 className="text-[20px] font-semibold  mb-3">{title}</h3>
+                  <div className='flex justify-between'>
+                    <p className="text-gray-600 mb-4">
+                      {detail}
+                    </p>
           {link ? (
             <Link to={link} className="service-learn-more">
-              <CircleChevronRight />
+              <CircleChevronRight size={24} />
             </Link>
           ) : (
             <button className="service-learn-more" onClick={onClick}>
-              <CircleChevronRight />
+              <CircleChevronRight size={24} />
             </button>
           )}
         </div>
@@ -222,7 +223,7 @@ const Home: React.FC<HomeProps> = ({ whatWeDoItems }) => {
             A Bold Partnership Model<br />
             For Smarter Healthcare Operations
           </h1>
-          <p className="text-[16px] md:text-[18px] lg:text-[24px] mb-8 clamped-text transition-all duration-500 hover:scale-110 font-normal">
+          <p className="text-[16px] md:text-[18px] lg:text-[24px] mb-8 clamped-text transition-all duration-500 hover:scale-110 font-normal ">
             We're rewriting the rules. By uniting industry expertise, innovative technology, and operational risk controls, we're introducing a new model of integration that streamlines operations and cuts costs. We provide the tools for physicians to thrive, maintain autonomy, and operate without the complexities of traditional management models.
           </p>
         </div>
@@ -231,7 +232,7 @@ const Home: React.FC<HomeProps> = ({ whatWeDoItems }) => {
       <section id="about" className="py-16 md:py-24 bg-gray-50">
         <div className="max-w-[1440px] mx-auto px-4 md:px-8">
           <h2 className="text-[32px] md:text-[40px] leading-[1.3] font-bold mb-6 text-center">About Us</h2>
-          <p className="text-[16px] md:text-[18px] leading-[1.6] text-gray-600 max-w-[960px] mx-auto text-center mb-12 md:mb-16">
+          <p className="clamped-text text-[16px] md:text-[18px] leading-[1.6] text-gray-600 max-w-[960px] mx-auto text-center mb-12 md:mb-16 ">
             We operate at the intersection of expertise, technology, and trust—bringing deep industry
             knowledge and strategic insight to every engagement. Grounded in transparency and integrity,
             we align with those who prioritize operational excellence and long-term sustainability. Our
@@ -266,7 +267,7 @@ const Home: React.FC<HomeProps> = ({ whatWeDoItems }) => {
       <section id="services" className="py-16 md:py-24">
         <div className="max-w-[1440px] mx-auto px-4 md:px-8">
           <h2 className="text-[32px] md:text-[40px] leading-[1.3] font-bold mb-6 text-center">Our Services</h2>
-          <p className="text-[16px] md:text-[18px] leading-[1.6] text-gray-600 max-w-[960px] mx-auto text-center mb-12 md:mb-16">
+          <p className="text-[16px] md:text-[18px] leading-[1.6] text-gray-600 max-w-[960px] mx-auto text-center mb-12 md:mb-16 clamped-text">
             We set the standard for accuracy, efficiency, and value - delivering faster turnarounds,
             unmatched precision, and measurable impact. Backed by rigorous risk controls and
             uncompromising quality, our integrated solutions go beyond excellence to redefine what's
@@ -280,8 +281,8 @@ const Home: React.FC<HomeProps> = ({ whatWeDoItems }) => {
                   alt={service.title}
                   className="service-image"
                 />
-                <div className="service-content">
-                  <h3 className="text-[20px] md:text-[24px] font-semibold mb-3">{service.title}</h3>
+                 <div className="service-content">
+                  <h3 className="text-[20px] font-semibold  mb-3">{service.title}</h3>
                   <div className='flex justify-between'>
                     <p className="text-gray-600 mb-4">
                       {service.detail}

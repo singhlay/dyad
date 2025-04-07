@@ -48,20 +48,22 @@ const Onboarding = () => {
 
       {/* Client Intake & Onboarding Section */}
       <section className="py-16 md:py-24">
-        <div className="max-w-[1440px] mx-auto px-4 md:px-8">
-          <h2 className="text-[32px] md:text-[40px] leading-[1.3] font-bold mb-6 text-center">
+        <div className=" mx-auto px-4 md:px-8 ">
+          <div className='max-w-[1100px] mx-auto'>
+          <h2 className="text-[32px] md:text-[40px] leading-[1.3] font-bold mb-6 text-center clamped-text">
             Client Intake & Onboarding: A Streamlined Approach
           </h2>
-          <div className="text-center mb-12 md:mb-16">
-            <p className="text-[16px] md:text-[18px] leading-[1.6] text-gray-600 mb-4">
+          <div className="text-center mb-12 md:mb-16 ">
+            <p className="text-[16px] md:text-[18px] leading-[1.6] text-gray-600 mb-4 clamped-text">
               At Dyad, efficiency starts from day one. Our client intake and onboarding process is designed to be
               seamless, transparent, and tailored to the operational realities of a practice. We prioritize clear
               communication, structured transitions, and minimal disruption.
             </p>
-            <p className="text-[16px] md:text-[18px] leading-[1.6] text-gray-600">
+            <p className="text-[16px] md:text-[18px] leading-[1.6] text-gray-600 clamped-text">
               Our onboarding is more than just a checklist—it's a structured, strategic process designed to set the
               foundation for long-term success. <a href="#register" className="text-primary hover:underline">Register Today</a>
             </p>
+          </div>
           </div>
 
           {/* Timeline */}
@@ -73,7 +75,8 @@ const Onboarding = () => {
                   className={`timeline-step step-${step.number} ${selectedStep?.number === step.number ? 'active' : ''}`}
                   onClick={() => setSelectedStep(step)}
                 >
-                 {<div className="step-number md:min-h-20">{!selectedStep && step.number}</div>} 
+                 {
+                  <div className="step-number md:min-h-20">{!selectedStep && step.number}</div>} 
                   <div className="step-circle">
                   </div>
                   <div className="step-title">
@@ -96,18 +99,17 @@ const Onboarding = () => {
     onClick={() => setSelectedStep(null)} // Close when clicking outside
   >
     <div 
-      className="bg-white rounded-lg max-w-2xl w-full p-6 relative mt-8  "
+      className="bg-white rounded-lg max-w-lg p-6 relative mt-8 text-xl"
       style={{ border: `2px solid ${selectedStep.color}` }}
-      onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+      onClick={(e) => e.stopPropagation()} 
     >
       {/* Number circle positioned at top center of container */}
       <div 
-        className="absolute rounded-full w-14 h-14 flex items-center justify-center text-white -top-6 left-1/2 -translate-x-1/2"
+        className="text-5xl absolute rounded-full w-20 h-20 flex items-center justify-center text-white -top-12 left-1/2 -translate-x-1/2"
         style={{ backgroundColor: selectedStep.color }}
       >
         {selectedStep.number}
       </div>
-
       {/* Content */}
       <div className="mt-4 text-center">
         <h3 className="text-xl font-bold text-gray-800 text-center">{selectedStep.title}</h3>
