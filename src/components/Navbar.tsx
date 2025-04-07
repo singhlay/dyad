@@ -11,6 +11,11 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ whatWeDoItems, onServiceClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDesktopDropdown, setActiveDesktopDropdown] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState(null);
+
+  const handleCategoryClick = (category:any) => {
+    setActiveCategory(activeCategory === category ? null : category);
+  };
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById('about');
@@ -52,7 +57,7 @@ const Navbar: React.FC<NavbarProps> = ({ whatWeDoItems, onServiceClick }) => {
             </Link>
           </div>
 
-          <button 
+          <button
             className="lg:hidden p-2 text-gray-600 hover:text-primary"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -64,7 +69,7 @@ const Navbar: React.FC<NavbarProps> = ({ whatWeDoItems, onServiceClick }) => {
           </button>
 
           <div className="hidden lg:flex items-center space-x-7">
-            <div 
+            <div
               className="relative group"
               onMouseEnter={() => handleDesktopDropdownHover('about')}
               onMouseLeave={handleDesktopDropdownLeave}
@@ -82,7 +87,7 @@ const Navbar: React.FC<NavbarProps> = ({ whatWeDoItems, onServiceClick }) => {
               </div>
             </div>
 
-            <div 
+            <div
               className="relative group"
               onMouseEnter={() => handleDesktopDropdownHover('what')}
               onMouseLeave={handleDesktopDropdownLeave}
@@ -93,21 +98,21 @@ const Navbar: React.FC<NavbarProps> = ({ whatWeDoItems, onServiceClick }) => {
               <div className="dropdown-menu w-[280px]">
                 {Object.entries(whatWeDoItems).map(([category, items]) => (
                   <div key={category} className="dropdown-section">
-                    <button 
+                    <button
                       className="dropdown-header"
-                      onClick={() => handleServiceClick(category)}
                     >
                       <span>{category}</span>
                       <ChevronRight className="w-4 h-4" />
                     </button>
                     <div className="subdropdown-menu">
                       {items.map((item) => (
-                        <button 
+                        <button
                           key={item}
                           className="dropdown-item"
                           onClick={() => handleServiceClick(category)}
+                          title={item.length > 24 ? item : ""} // Show full text as tooltip if truncated
                         >
-                          {item}
+                          {item.length > 24 ? `${item.substring(0, 24)}...` : item}
                         </button>
                       ))}
                     </div>
@@ -116,7 +121,7 @@ const Navbar: React.FC<NavbarProps> = ({ whatWeDoItems, onServiceClick }) => {
               </div>
             </div>
 
-            <div 
+            <div
               className="relative group"
               onMouseEnter={() => handleDesktopDropdownHover('who')}
               onMouseLeave={handleDesktopDropdownLeave}
@@ -160,7 +165,7 @@ const Navbar: React.FC<NavbarProps> = ({ whatWeDoItems, onServiceClick }) => {
                 <button onClick={() => scrollToSection('about')} className="mobile-dropdown-item">Our Process</button>
               </div>
             </div>
-
+{/* 
             <div className="mobile-dropdown">
               <div className="mobile-dropdown-header" onClick={(e) => {
                 const target = e.currentTarget;
@@ -174,30 +179,84 @@ const Navbar: React.FC<NavbarProps> = ({ whatWeDoItems, onServiceClick }) => {
                 <ChevronDown className="w-4 h-4" />
               </div>
               <div className="mobile-dropdown-content">
-                {Object.entries(whatWeDoItems).map(([category, items]) => (
-                  <div key={category} className="mobile-nested-dropdown">
-                    <button 
-                      className="mobile-dropdown-header"
+                {Object.entries(whatWeDoItems).map(([category, items]) => 
+           {
+            console.log("whatWeDoItems", whatWeDoItems)
+            return     (
+              <div key={category} className="mobile-nested-dropdown">
+                <button
+                  className="mobile-dropdown-header"
+                >
+                  <span>{category}</span>
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+                <div className="mobile-dropdown-content">
+                  {items.map((item) => (
+                    <button
+                      key={item}
+                      className="mobile-dropdown-item"
                       onClick={() => handleServiceClick(category)}
                     >
-                      <span>{category}</span>
-                      <ChevronDown className="w-4 h-4" />
+                      {item}
                     </button>
-                    <div className="mobile-dropdown-content">
-                      {items.map((item) => (
-                        <button
-                          key={item}
-                          className="mobile-dropdown-item"
-                          onClick={() => handleServiceClick(category)}
-                        >
-                          {item}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
+            )
+          
+           }
+              
+              )
+                
+                }
+              </div>
+            </div> */}
+
+<div className="mobile-dropdown">
+      <div
+        className="mobile-dropdown-header"
+        onClick={(e) => {
+          e.currentTarget.classList.toggle("active");
+          const content = e.currentTarget.nextElementSibling;
+          if (content) content.classList.toggle("show");
+        }}
+      >
+        <span className="nav-link">What We Do</span>
+        <ChevronDown className="w-4 h-4" />
+      </div>
+
+      <div className="mobile-dropdown-content">
+        {Object.entries(whatWeDoItems).map(([category, items]) => (
+          <div key={category} className="mobile-nested-dropdown">
+            <button
+              className={`mobile-dropdown-header ${
+                activeCategory === category ? "active" : ""
+              }`}
+              onClick={() => handleCategoryClick(category)}
+            >
+              <span>{category}</span>
+              <ChevronDown className="w-4 h-4" />
+            </button>
+
+            <div
+              className={`mobile-dropdown-content ${
+                activeCategory === category ? "show" : ""
+              }`}
+            >
+              {items.map((item) => (
+                <button
+                  key={item}
+                  className="mobile-dropdown-item"
+                  onClick={() => handleServiceClick(item)}
+                >
+                  {item}
+                </button>
+              ))}
             </div>
+          </div>
+        ))}
+      </div>
+    </div>
 
             <div className="mobile-dropdown">
               <div className="mobile-dropdown-header" onClick={(e) => {
