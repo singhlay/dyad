@@ -28,8 +28,8 @@ interface AboutModalProps {
 const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose, title, description }) => {
   if (!isOpen) return null;
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={e => e.stopPropagation()}>
+    <div className="modal-overlay backdrop-blur-[1px] " onClick={onClose}>
+      <div className="modal-content border-[2px] border-primary" onClick={e => e.stopPropagation()}>
         <div className="modal-body p-4 text-center">
           <h3 className="modal-title mb-2 font-semibold text-xl">{title}</h3>
           <p className="modal-description text-gray-600 clamped-text text-lg" lang="en">{description}</p>
@@ -250,16 +250,16 @@ const Home: React.FC<HomeProps> = ({ whatWeDoItems }) => {
       />
     </video>
     {/* Optional overlay for better text readability */}
-    <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+    <div className="absolute inset-0 bg-black bg-opacity-30"></div>
   </div>
 
   {/* Content */}
   <div className="max-w-[1300px] mx-auto px-4 md:px-8 relative z-10">
-    <h1 className="text-[36px] md:text-[48px] lg:text-[60px] leading-[1.2] mb-4 md:mb-6 text-center transition-all duration-500 hover:scale-110 font-semibold">
+    <h1 className=" text-[26px] md:text-[48px] lg:text-[60px] leading-[1.2] mb-4 md:mb-6 text-center transition-all duration-500 hover:scale-110 font-semibold">
       A Bold Partnership Model<br />
       For Smarter Healthcare Operations
     </h1>
-    <p className="text-[16px] md:text-[18px] lg:text-[24px] mb-8 clamped-text transition-all duration-500 hover:scale-110 font-normal">
+    <p className="text-[14px] md:text-[18px] lg:text-[24px] mb-8 clamped-text transition-all duration-500 hover:scale-110 font-normal">
       We're rewriting the rules. By uniting industry expertise, innovative technology, and operational risk controls, we're introducing a new model of integration that streamlines operations and cuts costs. We provide the tools for physicians to thrive, maintain autonomy, and operate without the complexities of traditional management models.
     </p>
   </div>

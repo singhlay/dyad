@@ -1,4 +1,4 @@
-import Logo from './Logo.jpg'
+import Logo from './Logo.png'
 import img1 from './1.png'
 import img2 from './2.png'
 import img3 from './3.png'
@@ -9,6 +9,7 @@ import hero from './hero.png'
 import LogoDark from './LogoDark.png'
 import ContactUs from './ContactUs.png'
 import ContactUsBackground from './ContactUsBackground.png'
+import cursor from './cursor.png'
 
 export {  
   Logo,
@@ -21,5 +22,6 @@ export {
   hero,
   LogoDark,
   ContactUs,
-  ContactUsBackground
+  ContactUsBackground,
+  cursor
 };

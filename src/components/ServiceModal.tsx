@@ -24,8 +24,8 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
   const shouldLastItemSpanFull = service?.items.length % 2 !== 0;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={onClose}>
-      <div className="bg-white rounded-xl shadow-xl w-full max-w-3xl mx-auto p-8" onClick={e => e.stopPropagation()}>
+    <div className=" fixed inset-0 bg-black bg-opacity-50 backdrop-blur-[1px] flex items-center justify-center z-50 p-4 " onClick={onClose}>
+      <div className="bg-white rounded-xl shadow-xl w-full max-w-3xl mx-auto p-8 border-[2px] border-primary modal-content-service" onClick={e => e.stopPropagation()}>
         <div className="flex justify-between items-center mb-8 text-center">
         <h3 className="text-2xl font-semibold text-gray-900 text-center w-full">
   {service?.title}

@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Onboarding from './pages/Onboarding';
 import ServiceModal from './components/ServiceModal';
+import CustomCursor from './components/CustomCursor';
 
 function App() {
   const [selectedService, setSelectedService] = useState<string | null>(null);
@@ -55,8 +56,9 @@ function App() {
   };
 
   return (
-    <Router>
-      <div className="min-h-screen bg-white">
+    <Router >
+      <div className="min-h-screen bg-white cursor-custom">
+      <CustomCursor />
         <Navbar whatWeDoItems={whatWeDoItems} onServiceClick={handleServiceClick} />
         <Routes>
           <Route path="/" element={<Home whatWeDoItems={whatWeDoItems} />} />

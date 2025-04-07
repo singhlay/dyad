@@ -46,9 +46,9 @@ const Navbar: React.FC<NavbarProps> = ({ whatWeDoItems, onServiceClick }) => {
     <nav className="bg-white shadow-sm fixed w-full z-50">
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 py-4">
         <div className="flex justify-between items-end">
-          <div className="flex items-center">
+          <div className="flex items-end">
             <Link to="/">
-              <img src={Logo} alt="DYAD" className="h-[44px] xl:h-[90px]" />
+              <img src={Logo} alt="DYAD" className="h-[44px] lg:h-[60px] xl:h-[90px]" />
             </Link>
           </div>
 

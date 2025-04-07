@@ -4,6 +4,21 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Cursor Styles */
+.custom-cursor {
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  /* transition: transform 0.1s ease; */
+}
+
+/* Hide default cursor */
+* {
+  cursor: none !important;
+}
+
 body {
   font-family: 'Prompt', sans-serif;
   color: #333333;
@@ -95,7 +110,7 @@ background:
 
 .form-textarea {
   @apply w-full px-4 py-3 bg-transparent border border-gray-300 rounded-md focus:outline-none focus:border-primary transition-colors resize-none;
-  min-height: 120px;
+  min-height: 80px;
   font-style: italic;
   color: #666;
 }
@@ -259,6 +274,10 @@ background:
 
 .modal-content {
   @apply bg-white rounded-lg  max-w-2xl w-full mx-auto relative;
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+.modal-content-service {
   animation: modalFadeIn 0.3s ease-out;
 }
 
