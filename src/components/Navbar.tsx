@@ -247,7 +247,7 @@ const Navbar: React.FC<NavbarProps> = ({ whatWeDoItems, onServiceClick }) => {
                 <button
                   key={item}
                   className="mobile-dropdown-item"
-                  onClick={() => handleServiceClick(item)}
+                  onClick={() => handleServiceClick(category)}
                 >
                   {item}
                 </button>
