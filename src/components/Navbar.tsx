@@ -93,7 +93,7 @@ const Navbar: React.FC<NavbarProps> = ({ whatWeDoItems, onServiceClick }) => {
               onMouseLeave={handleDesktopDropdownLeave}
             >
               <div className={`nav-link flex items-center gap-1 py-2 border-b-[3px] ${activeDesktopDropdown === 'what' ? 'text-primary  border-secondary' : 'border-white'}`}>
-                What We Do <ChevronDown className="w-4 h-4" />
+                What We Do <ChevronDown className={`w-4 h-4 duration-500 ${activeDesktopDropdown === 'what' ? 'rotate-180' : ''}`} />
               </div>
               <div className="dropdown-menu w-[280px]">
                 {Object.entries(whatWeDoItems).map(([category, items]) => (
@@ -127,7 +127,7 @@ const Navbar: React.FC<NavbarProps> = ({ whatWeDoItems, onServiceClick }) => {
               onMouseLeave={handleDesktopDropdownLeave}
             >
               <div className={`nav-link flex items-center gap-1 py-2 border-b-[3px]  ${activeDesktopDropdown === 'who' ? 'text-primary border-secondary' : 'border-white'}`}>
-                Who We Serve <ChevronDown className="w-4 h-4" />
+                Who We Serve <ChevronDown className={`w-4 h-4 duration-500 ${activeDesktopDropdown === 'who' ? 'rotate-180' : ''}`} />
               </div>
               <div className="dropdown-menu">
                 <a href="#surgical" className="dropdown-item">Surgical & Procedural Specialties</a>

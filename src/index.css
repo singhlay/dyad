@@ -79,16 +79,9 @@ background:
 }
 
 .nav-link {
-  @apply text-[16px] font-light text-gray-700 hover:text-primary transition-colors cursor-pointer py-2;
+  @apply text-[16px] text-gray-700 hover:text-primary transition-colors cursor-pointer py-2;
 }
 
-.dropdown-header svg {
-  @apply transition-transform duration-300 ease-in-out;
-}
-
-.dropdown-header.group:hover svg {
-  @apply transform rotate-180;
-}
 
 .btn-outline {
   @apply px-4 md:px-6 py-2 md:py-2.5 text-center border border-primary text-primary font-medium rounded-sm hover:bg-primary hover:text-white transition-colors text-sm md:text-base;
@@ -171,7 +164,7 @@ background:
 }
 
 .dropdown-item {
-  @apply block px-4 py-2 text-gray-700 hover:text-secondary transition-colors text-[14px] whitespace-nowrap;
+  @apply block px-4 py-3 text-gray-700 hover:text-secondary transition-colors text-[14px] whitespace-nowrap;
 }
 
 .dropdown-section {
