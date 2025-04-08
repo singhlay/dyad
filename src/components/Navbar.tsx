@@ -99,7 +99,7 @@ const Navbar: React.FC<NavbarProps> = ({ whatWeDoItems, onServiceClick }) => {
                 {Object.entries(whatWeDoItems).map(([category, items]) => (
                   <div key={category} className="dropdown-section">
                     <button
-                      className="dropdown-header"
+                      className="dropdown-header group"
                     >
                       <span>{category}</span>
                       <ChevronRight className="w-4 h-4" />
