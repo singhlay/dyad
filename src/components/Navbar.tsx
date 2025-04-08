@@ -75,7 +75,7 @@ const Navbar: React.FC<NavbarProps> = ({ whatWeDoItems, onServiceClick }) => {
               onMouseLeave={handleDesktopDropdownLeave}
             >
               <div className={`nav-link flex items-center gap-1 py-2 border-b-[3px]  ${activeDesktopDropdown === 'about' ? 'text-primary  border-secondary' : 'border-white'}`}>
-                About Us <ChevronDown className={`w-4 h-4  ${activeDesktopDropdown === 'about' ? 'rotate-180' : ''}`} />
+                About Us <ChevronDown className={`w-4 h-4 duration-500 ${activeDesktopDropdown === 'about' ? 'rotate-180' : ''}`} />
               </div>
               <div className="dropdown-menu">
                 <button onClick={() => scrollToSection('about')} className="dropdown-item">Our Story & Inspiration</button>

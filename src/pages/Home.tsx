@@ -259,7 +259,7 @@ const Home: React.FC<HomeProps> = ({ whatWeDoItems }) => {
       A Bold Partnership Model<br />
       For Smarter Healthcare Operations
     </h1>
-    <p className="text-[14px] md:text-[18px] lg:text-[24px] mb-8 clamped-text transition-all duration-500 hover:scale-110 font-normal">
+    <p className="text-[14px] md:text-[18px] lg:text-[24px] mb-8 clamped-text transition-all duration-500 hover:scale-110 font-normal bg-black bg-opacity-20">
       We're rewriting the rules. By uniting industry expertise, innovative technology, and operational risk controls, we're introducing a new model of integration that streamlines operations and cuts costs. We provide the tools for physicians to thrive, maintain autonomy, and operate without the complexities of traditional management models.
     </p>
   </div>
