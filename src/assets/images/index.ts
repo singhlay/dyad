@@ -10,6 +10,9 @@ import LogoDark from './LogoDark.png'
 import ContactUs from './ContactUs.png'
 import ContactUsBackground from './ContactUsBackground.png'
 import cursor from './cursor.png'
+import pre from './pre.jpg'
+import prac from './prac.jpg'
+import realtime from './realtime.jpg'
 
 export {  
   Logo,
@@ -23,5 +26,8 @@ export {
   LogoDark,
   ContactUs,
   ContactUsBackground,
-  cursor
+  cursor,
+  pre,
+  prac,
+  realtime
 };

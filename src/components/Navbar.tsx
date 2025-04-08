@@ -74,8 +74,8 @@ const Navbar: React.FC<NavbarProps> = ({ whatWeDoItems, onServiceClick }) => {
               onMouseEnter={() => handleDesktopDropdownHover('about')}
               onMouseLeave={handleDesktopDropdownLeave}
             >
-              <div className={`nav-link flex items-center gap-1 py-2 ${activeDesktopDropdown === 'about' ? 'text-primary  border-b-[3px] border-secondary' : ''}`}>
-                About Us <ChevronDown className="w-4 h-4" />
+              <div className={`nav-link flex items-center gap-1 py-2 border-b-[3px]  ${activeDesktopDropdown === 'about' ? 'text-primary  border-secondary' : 'border-white'}`}>
+                About Us <ChevronDown className={`w-4 h-4  ${activeDesktopDropdown === 'about' ? 'rotate-180' : ''}`} />
               </div>
               <div className="dropdown-menu">
                 <button onClick={() => scrollToSection('about')} className="dropdown-item">Our Story & Inspiration</button>
@@ -92,7 +92,7 @@ const Navbar: React.FC<NavbarProps> = ({ whatWeDoItems, onServiceClick }) => {
               onMouseEnter={() => handleDesktopDropdownHover('what')}
               onMouseLeave={handleDesktopDropdownLeave}
             >
-              <div className={`nav-link flex items-center gap-1 py-2 ${activeDesktopDropdown === 'what' ? 'text-primary border-b-[3px] border-secondary' : ''}`}>
+              <div className={`nav-link flex items-center gap-1 py-2 border-b-[3px] ${activeDesktopDropdown === 'what' ? 'text-primary  border-secondary' : 'border-white'}`}>
                 What We Do <ChevronDown className="w-4 h-4" />
               </div>
               <div className="dropdown-menu w-[280px]">
@@ -126,7 +126,7 @@ const Navbar: React.FC<NavbarProps> = ({ whatWeDoItems, onServiceClick }) => {
               onMouseEnter={() => handleDesktopDropdownHover('who')}
               onMouseLeave={handleDesktopDropdownLeave}
             >
-              <div className={`nav-link flex items-center gap-1 py-2 ${activeDesktopDropdown === 'who' ? 'text-primary border-b-[3px] border-secondary' : ''}`}>
+              <div className={`nav-link flex items-center gap-1 py-2 border-b-[3px]  ${activeDesktopDropdown === 'who' ? 'text-primary border-secondary' : 'border-white'}`}>
                 Who We Serve <ChevronDown className="w-4 h-4" />
               </div>
               <div className="dropdown-menu">
