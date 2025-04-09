@@ -200,12 +200,12 @@ background:
 }
 
 .timeline-steps {
-  @apply relative flex flex-col items-center lg:flex-row justify-between  gap-8 md:gap-0;
+  @apply relative flex flex-col items-center lg:flex-row justify-between gap-8 md:gap-4;
   z-index: 2;
 }
 
 .timeline-step {
-  @apply flex flex-col items-center relative gap-2 md:gap-0 cursor-pointer;
+  @apply grid grid-rows-3 max-h-[260px] place-items-center cursor-pointer;
   @apply w-full md:w-[190px] ;
 }
 
