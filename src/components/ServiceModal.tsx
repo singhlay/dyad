@@ -32,13 +32,13 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
 </h3>
         </div>
         
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {service?.items.map((item, index) => (
             <div 
               key={index} 
               className={`
                 bg-[#DAE8F533] rounded-lg border border-[#C2CFDC] shadow-md p-6
-                ${index === service?.items.length - 1 && shouldLastItemSpanFull ? 'col-span-2' : ''}
+                ${index === service?.items.length - 1 && shouldLastItemSpanFull ? 'col-span-1 sm:col-span-2 ' : ''}
               `}
             >
               <p className="text-gray-800 text-lg font-medium text-center">{item}</p>

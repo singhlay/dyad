@@ -1,12 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { ChevronRightCircle as CircleChevronRight, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { ChevronRightCircle as CircleChevronRight, Mail, Phone, MapPin } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { LogoDark, img1, img2, img3, img4, img5, img6 , prac, pre, realtime } from '../assets/images/index.ts';
+import { LogoDark, img3, img4, img5 , prac, pre, realtime } from '../assets/images/index.ts';
 import ServiceModal from '../components/ServiceModal.js';
 import { dyadVideo } from '../assets/videos/index.ts';
 
+interface AboutUsItem {
+  title: string;
+  detail: string;
+  description: string;
+  image: string; // Assuming img1, img2 etc. are string paths
+  link?: string; // Optional because not all items have it
+}
+
+
 interface HomeProps {
   whatWeDoItems: Record<string, string[]>;
+  aboutUsItems : AboutUsItem[];
+  selectedServiceAbout: string | null;
+  setSelectedServiceAbout: (section: string | null) => void;
 }
 
 interface ServiceCardProps {
@@ -16,28 +28,6 @@ interface ServiceCardProps {
   link?: string;
   onClick?: () => void;
 }
-
-// Fix 1: Update the AboutModal interface to match what you're actually using
-interface AboutModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  title: string;
-  description: string;  // Changed from 'details' to 'description'
-}
-
-const AboutModal: React.FC<AboutModalProps> = ({ isOpen, onClose, title, description }) => {
-  if (!isOpen) return null;
-  return (
-    <div className="modal-overlay backdrop-blur-[1px] " onClick={onClose}>
-      <div className="modal-content border-[2px] border-primary" onClick={e => e.stopPropagation()}>
-        <div className="modal-body p-4 text-center">
-          <h3 className="modal-title mb-2 font-semibold text-xl">{title}</h3>
-          <p className="modal-description text-gray-600 clamped-text text-lg" lang="en">{description}</p>
-        </div> 
-      </div>
-    </div>
-  );
-};
 
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ title, detail, image, link, onClick }) => {
@@ -87,7 +77,7 @@ const serviceDetails = {
     items: [
       'Payer Contracting',
       'Practice Assessment',
-      'Startup Consulting',
+      'Payer Enrollment',
       'Facility Credentialing',
       'Physician Credentialing',
       'Physician Licensing'
@@ -122,8 +112,8 @@ const serviceDetails = {
       'Denials & Appeals',
       'Accounts Receivable (AR)',
       'Payment Posting & Reconciliation',
-      'Underpayments Recovery',
-      'Rebill Processing'
+      'Rebill Processing',
+      'Detection & Underpayments Recovery'
     ]
   },
   'Specialty Billing': {
@@ -138,62 +128,20 @@ const serviceDetails = {
     title: 'Real Time Monitoring & Insights',
     detail: "Credentialing alerts, reporting & strategic insights",
     items: [
-      '24/7 Network Monitoring',
+      'Real Time Claims Tracking',
       'CAQH Management',
-      'Robust Reporting, Market Analytics, and Benchmarking'
+      'Contracted Rates Benchmarking',
+      'Market Analytics',
+      'Robust Reporting',
+      'Customized Insights'
     ]
   }
 };
 
-const aboutUsCards = [
-  {
-    title: "Our Story & Inspiration",
-    detail: "The origins and purpose",
-    description:
-      "In 1908, William J. Mayo hired Harry Harwick to manage the business and operations of the Mayo Clinic, pioneering a new leadership model in healthcare: the Dyad. At its core, a Dyad is a partnership—a seamless collaboration between a physician leader and a non-physician business expert to elevate patient care and practice performance. Inspired by this model, Dyad Practice Solutions was founded to bring the same partnership-driven approach to modern practice management, combining industry expertise, technology, and strategy to simplify operations and preserve physician autonomy.",
-    image: img1,
-  },
-  {
-    title: "Clarity & Accountability",
-    detail: "Partnership through integrity and transparency",
-    description:
-      "The Dyad partnership-driven model is built on a fiduciary commitment, providing integrity and transparency in every engagement. We deliver measurable outcomes that support practices in optimizing operations while ensuring they remain in control.",
-    image: img2,
-  },
-  {
-    title: "Innovative Technology",
-    detail: "Integrated risk controls and optimized workflows",
-    description:
-      "Technology alone isn't enough—it's how it's applied that makes the difference. Dyad integrates AI, automation, and data-driven insights with industry expertise to improve workflows, reduce inefficiencies, and strengthen practice operations—all with expert oversight to ensure accuracy and reliability.",
-    image: img3,
-  },
-  {
-    title: "Empowering Physician Autonomy",
-    detail: "Empowering independent practices with scalable solutions",
-    description:
-      "Running an independent practice means more than delivering patient care—it requires coordinating vendors, ensuring service quality, and holding third parties accountable. Without the right support, these essential responsibilities can become inefficient and costly. Dyad operates as an extension of the practice, delivering value, exceptional service, and measurable results. Built on a fiduciary commitment, we provide the expertise, structure, and transparency physicians need to operate with confidence, navigate challenges, and sustain long-term success.",
-    image: img4,
-  },
-  {
-    title: "Why Dyad",
-    detail: "Expertise, execution, and strategic support",
-    description:
-      "Dyad integrates industry expertise, technology, and structured risk controls to create stability, efficiency, and accountability in practice operations. Risk controls at Dyad are proactive measures designed to ensure accuracy in billing, regulatory compliance, and operational continuity. Rather than offering fragmented, à la carte services, we take an integrated approach—delivering a seamless, structured framework that enhances efficiency, ensures consistency, and drives measurable outcomes. Our fiduciary approach ensures every solution aligns with the best interests of the practice.",
-    image: img5,
-  },
-  {
-    title: "Our Process",
-    detail: "Streamlined for efficiency from day one",
-    description:
-      "A streamlined approach designed for efficiency and success from day one of our partnership.",
-    image: img6,
-    link: "/onboarding",
-  },
-];
 
-const Home: React.FC<HomeProps> = ({ whatWeDoItems }) => {
+const Home: React.FC<HomeProps> = ({ whatWeDoItems , aboutUsItems, selectedServiceAbout, setSelectedServiceAbout}) => {
   const [selectedService, setSelectedService] = useState<string | null>(null);
-  const [selectedServiceAbout, setSelectedServiceAbout] = useState<string | null>(null);
+ 
   
   const location = useLocation();
 
@@ -270,10 +218,10 @@ const Home: React.FC<HomeProps> = ({ whatWeDoItems }) => {
         <div className="max-w-[1440px] mx-auto px-4 md:px-8">
           <h2 className="text-[32px] md:text-[40px] leading-[1.3] font-bold mb-6 text-center">About Us</h2>
           <p className="clamped-text text-[16px] md:text-[22px] leading-[1.6] text-gray-600 max-w-[1240px] mx-auto  mb-12 md:mb-16 ">
-          We operate at the intersection of expertise, technology, and trust—bringing deep industry knowledge and strategic insight to every engagement. Grounded in transparency and integrity, we align with those who prioritize operational excellence and long-term sustainability. Our approach is straightforward: no shortcuts—just a commitment to delivering meaningful results.
+          We operate at the intersection of expertise, technology, and trust, bringing deep industry knowledge and strategic insight to every engagement. Grounded in transparency and integrity, we align with those who prioritize operational excellence and long-term sustainability. Our approach is straightforward: no shortcuts, just a commitment to delivering meaningful results.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {aboutUsCards.map((card, index) => (
+            {aboutUsItems?.map((card, index) => (
               <ServiceCard
                 key={index}
                 title={card.title}
@@ -286,17 +234,6 @@ const Home: React.FC<HomeProps> = ({ whatWeDoItems }) => {
           </div>
         </div>
       </section>
-
-{selectedServiceAbout && (
-  <AboutModal
-    isOpen={true}
-    onClose={() => setSelectedServiceAbout(null)}
-    title={selectedServiceAbout}
-    description={
-      aboutUsCards.find(card => card.title === selectedServiceAbout)?.description || ''
-    }
-  />
-)}
 
       <section id="services" className="py-16 md:py-24">
         <div className="max-w-[1440px] mx-auto px-4 md:px-8">
@@ -339,33 +276,11 @@ const Home: React.FC<HomeProps> = ({ whatWeDoItems }) => {
         />
       )}
 
-<footer className="footer">
+     <footer className="footer">
         <div className="max-w-[1440px] mx-auto px-4 md:px-8">
           <div className="footer-grid">
             <div>
               <img src={LogoDark} alt="DYAD" className="h-6 md:h-8 mb-4 md:mb-6" />
-              <p className="text-gray-400 mb-6">
-                Transforming healthcare operations through innovative solutions and unmatched expertise.
-              </p>
-              <div className="footer-social">
-                <a href="#" className="social-icon"><Linkedin className="w-5 h-5" /></a>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="footer-heading">Services</h3>
-              <ul className="space-y-3">
-                {Object.keys(serviceDetails).map((service) => (
-                  <li key={service}>
-                    <button 
-                      onClick={() => setSelectedService(service)}
-                      className="footer-link text-left w-full"
-                    >
-                      {service}
-                    </button>
-                  </li>
-                ))}
-              </ul>
             </div>
 
             <div>
@@ -379,18 +294,40 @@ const Home: React.FC<HomeProps> = ({ whatWeDoItems }) => {
                     About Us
                   </button>
                 </li>
-                <li>
-                  <button 
-                    onClick={() => scrollToSection('services')} 
-                    className="footer-link text-left w-full"
-                  >
-                    Services
-                  </button>
-                </li>
+               
                 <li><Link to="/contact" className="footer-link">Contact</Link></li>
                 <li><Link to="/onboarding" className="footer-link">Onboarding</Link></li>
-                <li><a href="#" className="footer-link">Privacy Policy</a></li>
-                <li><a href="#" className="footer-link">Terms of Service</a></li>
+                <li><a className="footer-link">Privacy Policy</a></li>
+                <li><a className="footer-link">Terms of Service</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="footer-heading">Services</h3>
+              <ul className="space-y-3">
+                {Object.keys(serviceDetails).map((service) => (
+                  <li key={service}>
+                    <button 
+                      onClick={() => {
+                        scrollToSection('services')
+                        setSelectedService(service)}}
+                      className="footer-link text-left w-full"
+                    >
+                      {service}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+
+            <div>
+              <h3 className="footer-heading">Specialties</h3>
+              <ul className="space-y-3">
+              <li className="footer-link"> Surgical & Procedural Specialties</li>
+              <li className="footer-link"> Interventional & Diagnostic Care</li>
+              <li className="footer-link"> Perioperative & Supportive Services</li>
+              <li className="footer-link"> Outpatient & Specialty Facilities</li>
               </ul>
             </div>
 
@@ -399,15 +336,15 @@ const Home: React.FC<HomeProps> = ({ whatWeDoItems }) => {
               <ul className="space-y-4">
                 <li className="flex items-center text-gray-400">
                   <Mail className="w-5 h-5 mr-3" />
-                  info@dyadps.com
+                  Information@dyadmd.com 
                 </li>
                 <li className="flex items-center text-gray-400">
                   <Phone className="w-5 h-5 mr-3" />
-                  (555) 123-4567
+                  +1 (415) 265-4096
                 </li>
                 <li className="flex items-start text-gray-400">
                   <MapPin className="w-5 h-5 mr-3 mt-1" />
-                  <span>123 Healthcare Ave,<br />Suite 100<br />City, State 12345</span>
+                  <span>2573 Pacific Coast Hwy, Ste A277 Torrance, CA 90505</span>
                 </li>
               </ul>
             </div>
@@ -416,11 +353,11 @@ const Home: React.FC<HomeProps> = ({ whatWeDoItems }) => {
           <div className="footer-bottom">
             <div className="footer-bottom-content">
               <p>&copy; {new Date().getFullYear()} DYAD Practice Solutions. All rights reserved.</p>
-              <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
-                <a href="#" className="hover:text-white transition-colors duration-200">Privacy Policy</a>
-                <a href="#" className="hover:text-white transition-colors duration-200">Terms of Service</a>
-                <a href="#" className="hover:text-white transition-colors duration-200">Cookie Policy</a>
-              </div>
+              <ul className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
+                <li className="hover:text-white transition-colors duration-200">Privacy Policy</li>
+                <li className="hover:text-white transition-colors duration-200">Terms of Service</li>
+                <li className="hover:text-white transition-colors duration-200">Cookie Policy</li>
+              </ul>
             </div>
           </div>
         </div>
