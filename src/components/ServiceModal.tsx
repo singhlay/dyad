@@ -37,7 +37,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
             <div 
               key={index} 
               className={`
-                bg-[#DAE8F533] rounded-lg border border-[#C2CFDC] shadow-md p-6
+                bg-[#DAE8F533] rounded-lg border border-[#C2CFDC] shadow-md p-6 flex justify-center items-center
                 ${index === service?.items.length - 1 && shouldLastItemSpanFull ? 'col-span-1 sm:col-span-2 ' : ''}
               `}
             >

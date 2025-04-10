@@ -146,8 +146,7 @@ const Onboarding = () => {
                   className={`timeline-step step-${step.number} ${selectedStep?.number === step.number ? 'active' : ''}`}
                   onClick={() => setSelectedStep(step)}
                 >
-                  {
-                    <div className={`step-number min-h-full  ${selectedStep ? ' invisible' : "visible"} `} >{step.number}</div>}
+                  <div className={`step-number min-h-full  ${selectedStep ? ' invisible' : "visible"} `} >{step.number}</div>
                   <div className="step-circle">
                   </div>
                   <div className="step-title">

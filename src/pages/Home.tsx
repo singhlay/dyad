@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { ChevronRightCircle as CircleChevronRight, Mail, Phone, MapPin } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
-import { LogoDark, img3, img4, img5 , prac, pre, realtime } from '../assets/images/index.ts';
+import { ChevronRightCircle , Mail, Phone, MapPin } from 'lucide-react';
+import {  useLocation } from 'react-router-dom';
+import {  innovativetech,  special , prac, pre, realtime, claims } from '../assets/images/index.ts';
 import ServiceModal from '../components/ServiceModal.js';
 import { dyadVideo } from '../assets/videos/index.ts';
 
@@ -29,24 +29,33 @@ interface ServiceCardProps {
   onClick?: () => void;
 }
 
+interface ServiceDetail {
+  title: string;
+  detail: string;
+  items: string[];
+  img: string;
+}
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ title, detail, image, link, onClick }) => {
+
+const ServiceCard: React.FC<ServiceCardProps> = ({ title, detail, link, image, onClick }) => {
   // Content to be rendered inside or outside of Link
   const cardContent = (
     <>
+    <div >
       <img 
         src={image}
         alt={title}
         className="service-image"
       />
+      </div>
       <div className="service-content">
         <h3 className="text-[20px] font-semibold mb-3">{title}</h3>
-        <div className='flex justify-between '>
-          <p className="text-gray-600 mb-4">
+        <div className='flex justify-between items-center'>
+          <p className="text-gray-600 ">
             {detail}
           </p>
           <div className="service-learn-more">
-            <CircleChevronRight size={24} />
+            <ChevronRightCircle className='w-6 h-6'/>
           </div>
         </div>
       </div>
@@ -55,55 +64,55 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ title, detail, image, link, o
 
   return (
     <div className="service-card">
-      {link ? (
-        <Link to={link} className="block w-full h-full">
-          {cardContent}
-        </Link>
-      ) : (
         <button 
-          className="w-full h-full text-left"
+          className="w-full text-left"
           onClick={onClick}
         >
           {cardContent}
         </button>
-      )}
     </div>
   );
 };
 
-const serviceDetails = {
+
+
+const serviceDetails : Record<string, ServiceDetail>= {
   'Practice Foundations': {
     title: 'Practice Foundations',
     items: [
-      'Payer Contracting',
+      '*Payer Contracting',
       'Practice Assessment',
       'Payer Enrollment',
       'Facility Credentialing',
       'Physician Credentialing',
-      'Physician Licensing'
+      '*Physician Licensing'
     ],
     detail: "Startup support, compliance, and credentialing",
+    img: prac
   },
-  'Pre Encounter': {
-    title: 'Pre Encounter',
-    detail: "Eligibility verifications, prior-authorizations & patient estimates",
+  'Practice Management': {
+    title: 'Practice Management',
+    detail: "Bookeeping, Digital Marketing, Technology Solutions & HR Services",
     items: [
-      'Eligibility Verification',
-      'Benefits Verification',
-      'Medical Necessity Reviews',
+      'Bookeeping',
+      'Digital Marketing',
+      'Technology Solutions & HR Services',
+    ],
+    img:  innovativetech
+  },
+  'Pre & Post Encounter': {
+    title: 'Pre & Post Encounter',
+    detail: "Eligibility verifications, prior-authorizations, patient estimates, Precision driven charge capture, Specialty Coding",
+    items: [
+      'Eligibility & Benefits Verifications',
+      'Expedited Charge Capture',
       'Prior Authorizations',
-      'Good Faith Estimate'
-    ]
-  },
-  'Post Encounter': {
-    title: 'Post Encounter',
-    detail: "Precision driven charge capture, specialty coding & claims submission",
-    items: [
-      'Charge Capture',
       'Specialty Coding',
-      'Claims Documentation',
-      'Claims Submission'
+      'Patient Good Faith Estimates',
+      'Claims Scrubbing & Submission'
     ]
+    ,
+    img: pre
   },
   'Claims Management': {
     title: 'Claims Management',
@@ -115,6 +124,8 @@ const serviceDetails = {
       'Rebill Processing',
       'Detection & Underpayments Recovery'
     ]
+    ,
+    img: claims
   },
   'Specialty Billing': {
     title: 'Specialty Billing',
@@ -123,23 +134,27 @@ const serviceDetails = {
       'Personal Injury',
       'Workers Compensation'
     ]
+    ,
+    img: special
   },
-  'Real Time Monitoring & Insights': {
-    title: 'Real Time Monitoring & Insights',
+  'Real Time Insights': {
+    title: 'Real Time Insights',
     detail: "Credentialing alerts, reporting & strategic insights",
     items: [
-      'Real Time Claims Tracking',
+      'Track Claims Real Time',
       'CAQH Management',
       'Contracted Rates Benchmarking',
       'Market Analytics',
       'Robust Reporting',
       'Customized Insights'
     ]
+    ,
+    img: realtime
   }
 };
 
 
-const Home: React.FC<HomeProps> = ({ whatWeDoItems , aboutUsItems, selectedServiceAbout, setSelectedServiceAbout}) => {
+const Home: React.FC<HomeProps> = ({ aboutUsItems, setSelectedServiceAbout}) => {
   const [selectedService, setSelectedService] = useState<string | null>(null);
  
   
@@ -220,7 +235,7 @@ const Home: React.FC<HomeProps> = ({ whatWeDoItems , aboutUsItems, selectedServi
           <p className="clamped-text text-[16px] md:text-[22px] leading-[1.6] text-gray-600  mx-auto  mb-12 md:mb-16" style={{padding : "0px"}}>
           We operate at the intersection of expertise, technology, and trust, bringing deep industry knowledge and strategic insight to every engagement. Grounded in transparency and integrity, we align with those who prioritize operational excellence and long-term sustainability. Our approach is straightforward: no shortcuts, just a commitment to delivering meaningful results.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid h-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {aboutUsItems?.map((card, index) => (
               <ServiceCard
                 key={index}
@@ -228,7 +243,7 @@ const Home: React.FC<HomeProps> = ({ whatWeDoItems , aboutUsItems, selectedServi
                 detail={card.detail}
                 image={card.image}
                 link={card.link}
-                onClick={card.link ? undefined : () => setSelectedServiceAbout(card.title)}
+                onClick={() => setSelectedServiceAbout(card.title)}
               />
             ))}
           </div>
@@ -245,20 +260,20 @@ const Home: React.FC<HomeProps> = ({ whatWeDoItems , aboutUsItems, selectedServi
             {Object.entries(serviceDetails).map(([key, service], index) => (
               <div key={index} className="service-card" onClick={() => setSelectedService(key)}>
                 <img 
-                  src={[prac, pre, img3, img4, img5, realtime][index]}
+                  src={service.img}
                   alt={service.title}
                   className="service-image"
                 />
                  <div className="service-content">
                   <h3 className="text-[20px] font-semibold  mb-3">{service.title}</h3>
                   <div className='flex justify-between'>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-gray-600 ">
                       {service.detail}
                     </p>
                     <button 
                       className="service-learn-more"
                     >
-                      <CircleChevronRight/>
+                      <ChevronRightCircle className='w-6 h-6'/>
                     </button>
                   </div>
                 </div>
@@ -279,26 +294,77 @@ const Home: React.FC<HomeProps> = ({ whatWeDoItems , aboutUsItems, selectedServi
      <footer className="footer">
         <div className="max-w-[1440px] mx-auto px-4 md:px-8">
           <div className="footer-grid">
+            
             <div>
-              <img src={LogoDark} alt="DYAD" className="h-6 md:h-8 mb-4 md:mb-6" />
-            </div>
-
-            <div>
-              <h3 className="footer-heading">Company</h3>
+              <h3 className="footer-heading">About Us</h3>
               <ul className="space-y-3">
                 <li>
                   <button 
-                    onClick={() => scrollToSection('about')} 
+                  onClick={() => {
+                    setSelectedServiceAbout('Our Story & Inspiration')
+                    scrollToSection('about')
+                  }} 
                     className="footer-link text-left w-full"
                   >
-                    About Us
+                    Our Story & Inspiration
+                  </button>
+                </li>
+                <li>
+                  <button 
+                  onClick={() => {
+                    setSelectedServiceAbout('Clarity & Accountability')
+                    scrollToSection('about')
+                  }} 
+                    className="footer-link text-left w-full"
+                  >
+                    Clarity & Accountability
+                  </button>
+                </li>
+                <li>
+                  <button 
+                  onClick={() => {
+                    setSelectedServiceAbout('Innovative Technology')
+                    scrollToSection('about')
+                  }} 
+                    className="footer-link text-left w-full"
+                  >
+                    Innovative Technology
                   </button>
                 </li>
                
-                <li><Link to="/contact" className="footer-link">Contact</Link></li>
-                <li><Link to="/onboarding" className="footer-link">Onboarding</Link></li>
-                <li><a className="footer-link">Privacy Policy</a></li>
-                <li><a className="footer-link">Terms of Service</a></li>
+                <li>
+                  <button 
+                  onClick={() => {
+                    setSelectedServiceAbout('Empowering Physician Autonomy')
+                    scrollToSection('about')
+                  }} 
+                    className="footer-link text-left w-full"
+                  >
+                    Empowering Physician Autonomy
+                  </button>
+                </li>
+                <li>
+                  <button 
+                  onClick={() => {
+                    setSelectedServiceAbout('Why Dyad')
+                    scrollToSection('about')
+                  }} 
+                    className="footer-link text-left w-full"
+                  >
+                    Why Dyad?
+                  </button>
+                </li>
+                <li>
+                <button 
+                  onClick={() => {
+                    setSelectedServiceAbout('Our Process')
+                    scrollToSection('about')
+                  }} 
+                    className="footer-link text-left w-full"
+                  >
+                    Our Process
+                  </button>
+                </li>
               </ul>
             </div>
 
@@ -336,15 +402,15 @@ const Home: React.FC<HomeProps> = ({ whatWeDoItems , aboutUsItems, selectedServi
               <ul className="space-y-4">
                 <li className="flex items-center text-gray-400">
                   <Mail className="w-5 h-5 mr-3" />
-                  Information@dyadmd.com 
+                  info@dyadmd.com 
                 </li>
                 <li className="flex items-center text-gray-400">
                   <Phone className="w-5 h-5 mr-3" />
                   +1 (415) 265-4096
                 </li>
                 <li className="flex items-start text-gray-400">
-                  <MapPin className="w-5 h-5 mr-3 mt-1" />
-                  <span>2573 Pacific Coast Hwy, Ste A277 Torrance, CA 90505</span>
+                  <MapPin className="w-6 h-6 mr-3 " />
+                  <span>2573 Pacific Coast Hwy,<br /> Ste A277 Torrance, CA 90505</span>
                 </li>
               </ul>
             </div>

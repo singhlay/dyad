@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
 import { Logo } from '../assets/images/index.ts';
 
@@ -101,7 +101,7 @@ const Navbar: React.FC<NavbarProps> = ({ whatWeDoItems, onServiceClick  , onAbou
                 <button onClick={() => handleAboutClick('Innovative Technology')} className="dropdown-item">Innovative Technology</button>
                 <button onClick={() => handleAboutClick('Empowering Physician Autonomy')} className="dropdown-item">Empowering Physician Autonomy</button>
                 <button onClick={() => handleAboutClick('Why Dyad')} className="dropdown-item">Why Dyad?</button>
-                <Link to='/onboarding' className="dropdown-item">Our Process</Link>
+                <button onClick={() => handleAboutClick('Our Process')} className="dropdown-item">Our Process</button>
               </div>
             </div>
 
@@ -183,8 +183,7 @@ const Navbar: React.FC<NavbarProps> = ({ whatWeDoItems, onServiceClick  , onAbou
                 <button onClick={() => handleAboutClick('Innovative Technology')} className="mobile-dropdown-item">Innovative Technology</button>
                 <button onClick={() => handleAboutClick('Empowering Physician Autonomy')} className="mobile-dropdown-item">Empowering Physician Autonomy</button>
                 <button onClick={() => handleAboutClick('Why Dyad')} className="mobile-dropdown-item">Why Dyad?</button>
-                <Link to='/onboarding' className="mobile-dropdown-item">Our Process</Link>
-                
+                <button onClick={() => handleAboutClick('Our Process')} className="mobile-dropdown-item">Our Process</button>
               </div>
             </div>
 
