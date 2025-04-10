@@ -50,7 +50,7 @@ background:
 }
 
 .service-content {
-  @apply p-6 flex flex-col justify-between gap-6;
+  @apply p-6 flex flex-col  gap-6;
 }
 
 .service-learn-more {
@@ -88,7 +88,7 @@ background:
 }
 
 .btn-primary {
-  @apply px-4 xl:px-9 py-2 xl:py-2.5 bg-primary text-white font-medium rounded-sm hover:bg-blue-700 transition-colors 
+  @apply px-4 xl:px-9 py-2 xl:py-2.5 bg-primary border text-white font-medium rounded-sm hover:bg-blue-700 transition-colors 
   text-[16px] xl:text-[18px] text-nowrap lg:w-[145px] xl:w-[170px] text-center
   ;
 }
