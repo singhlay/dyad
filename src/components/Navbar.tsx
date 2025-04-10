@@ -159,7 +159,7 @@ const Navbar: React.FC<NavbarProps> = ({ whatWeDoItems, onServiceClick  , onAbou
             </div>
 
             <Link to="https://dev.dyadmd.com/#/login" className="btn-outline">Login/Register</Link>
-            <Link to="/contact" className="btn-primary">Contact Us</Link>
+            <Link to="/contact" className="btn-primary ">Contact Us</Link>
           </div>
         </div>
 
