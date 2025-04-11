@@ -131,9 +131,9 @@ const Navbar: React.FC<NavbarProps> = ({ whatWeDoItems, onServiceClick  , onAbou
                           className="dropdown-item"
                           onClick={() => 
                             handleServiceClick(category)}
-                          title={item.length > 25 ? item : ""} // Show full text as tooltip if truncated
+                          title={item.length > 36 ? item : ""} // Show full text as tooltip if truncated
                         >
-                          {item.length > 25 ? `${item.substring(0, 25)}...` : item}
+                          {item.length > 36 ? `${item.substring(0, 36)}...` : item}
                         </button>
                       ))}
                     </div>

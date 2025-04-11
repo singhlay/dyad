@@ -15,13 +15,12 @@ function App() {
 
   const whatWeDoItems = {
     'Practice Foundations': [
+      'Payer Contracting',
       'Practice Assessment', 
-      'Startup Consulting',
-      'Physician Licensing',
-      'Physician Credentialing',
-      'Facility Credentialing',
       'Payer Enrollment',
-      'Payer Contracting'
+      'Facility Credentialing',
+      'Physician Credentialing',
+      'Physician Licensing',
     ],
     'Practice Management': [
       'Accounting & Tax', 
@@ -40,10 +39,9 @@ function App() {
     'Claims Management': [
       'Denials & Appeals',
       'Accounts Receivable (AR)',
-      'Payment Posting ',
-      'Payment Reconciliation',
-      'Underpayments Recovery',
-      'Patient Invoicing'
+      'Payment Posting & Reconciliation',
+      'Rebill Processing',
+      'Underpayments Detection & Recovery'
     ],
     'Specialty Billing': [
       'Personal Injury',
@@ -52,7 +50,10 @@ function App() {
     'Real Time Insights': [
       'Track Claims Real Time',
       'CAQH Management',
-      'Benchmarking'
+      'Contracted Rates Benchmarking',
+      'Market Analytics',
+      'Robust Reporting',
+      'Customized Insights'
     ]
   };
 

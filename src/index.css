@@ -165,7 +165,7 @@ background:
 }
 
 .dropdown-item {
-  @apply block px-4 py-3 text-gray-700 hover:text-secondary transition-colors  text-[14px] xl:text-[16px] whitespace-nowrap;
+  @apply block px-4 py-3 text-gray-700 hover:text-secondary transition-colors  text-[14px] xl:text-[16px] whitespace-nowrap overflow-hidden;
 }
 
 .dropdown-section {
@@ -177,7 +177,7 @@ background:
 }
 
 .subdropdown-menu {
-  @apply invisible opacity-0 absolute right-[-250px] top-0 bg-white border border-gray-200 py-1 w-[250px] transition-all duration-200 z-50;
+  @apply invisible opacity-0 absolute right-[-330px] top-0 bg-white border border-gray-200 py-1 w-[330px] transition-all duration-200 z-50;
 }
 
 .dropdown-section:hover > .subdropdown-menu {
@@ -316,7 +316,7 @@ background:
 }
 
 .footer-grid {
-  @apply grid grid-cols-1 lg:grid-cols-4 lg:gap-11 xl:gap-32 ;
+  @apply grid grid-cols-1 lg:grid-cols-4 lg:gap-11 xl:gap-16 ;
 }
 
 .footer-heading {
