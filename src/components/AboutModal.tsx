@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import {X} from "lucide-react";
 
 
 // Fix 1: Update the AboutModal interface to match what you're actually using
@@ -14,7 +15,8 @@ interface AboutModalProps {
     if (!isOpen) return null;
     return (
       <div className="modal-overlay backdrop-blur-[1px] " onClick={onClose}>
-        <div className="modal-content border-[2px] border-primary" onClick={e => e.stopPropagation()}>
+        <div className="modal-content border-[2px] border-primary" >
+          <div><X onClick={onClose} className="absolute top-2 right-2"/></div>
           <div className="modal-body p-4 text-center">
             <h3 className="modal-title mb-2 font-semibold text-xl">{title}</h3>
             <p className="modal-description text-gray-600 clamped-text text-lg" lang="en">{description}</p>

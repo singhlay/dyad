@@ -1,5 +1,5 @@
 import Logo from './Logo.png'
-import ourstory from './ourstory.jpeg'
+import ourstory from './ourstory.png'
 import clarity from './clartiy.jpg'
 import innovativetech from './innovativetech.jpg'
 import innotech from './innotech.jpeg'

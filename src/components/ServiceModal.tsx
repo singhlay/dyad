@@ -1,3 +1,4 @@
+import { X } from 'lucide-react';
 import React, {useEffect} from 'react';
 
 interface ServiceModalProps {
@@ -12,11 +13,6 @@ interface ServiceModalProps {
 
 const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service }) => {
 
-    useEffect(() => {
-      console.log("Service is",service);
-      
-    }, [service])
-    
 
   if (!isOpen) return null;
 
@@ -25,7 +21,8 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
 
   return (
     <div className=" fixed inset-0 bg-black bg-opacity-50 backdrop-blur-[1px] flex items-center justify-center z-50 p-4 " onClick={onClose}>
-      <div className="bg-white rounded-xl shadow-xl w-full max-w-3xl mx-auto p-8 border-[2px] border-primary modal-content-service" onClick={e => e.stopPropagation()}>
+      <div className="overflow-y-auto relative bg-white rounded-xl shadow-xl w-full max-w-3xl max-h-[95vh] mx-auto p-8 border-[2px] border-primary modal-content-service" >
+       <div  ><X onClick={onClose} className='absolute top-4 right-4'/></div>
         <div className="flex justify-between items-center mb-8 text-center">
         <h3 className="text-2xl font-semibold text-gray-900 text-center w-full">
   {service?.title}

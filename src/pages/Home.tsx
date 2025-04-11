@@ -157,8 +157,8 @@ const serviceDetails : Record<string, ServiceDetail>= {
 
 const Home: React.FC<HomeProps> = ({ aboutUsItems, setSelectedServiceAbout}) => {
   const [selectedService, setSelectedService] = useState<string | null>(null);
+
  
-  
   const location = useLocation();
 
   const scrollToSection = (sectionId: string) => {
@@ -407,10 +407,7 @@ const Home: React.FC<HomeProps> = ({ aboutUsItems, setSelectedServiceAbout}) => 
                 </li>
                 <li className="flex items-start text-gray-400">
                   <MapPin className="w-6 h-6 mr-3 " />
-                  <div>
-                  <p>2573 Pacific Coast Hwy, Ste A277</p>
-                  <p>Torrance, CA 90505</p>
-                  </div>
+                  <p>2573 Pacific Coast Hwy, Ste A277 <br />Torrance, CA 90505</p>
                 </li>
               </ul>
             </div>
