@@ -93,7 +93,7 @@ background:
 }
 
 .btn-submit {
-  @apply px-4 md:px-6 py-2 md:py-2.5 bg-primary text-white font-medium rounded-sm hover:bg-blue-700 transition-colors text-sm md:text-base;
+  @apply px-4 md:px-8 py-2 md:py-2.5 bg-primary text-white font-medium rounded-sm hover:bg-blue-700 transition-colors text-[16px] xl:text-[18px];
 }
 
 /* Form Input Styles */
