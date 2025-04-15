@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronRightCircle , Mail, Phone, MapPin } from 'lucide-react';
 import {  useLocation } from 'react-router-dom';
-import {  innovativetech,  special , prac, pre, realtime, claims } from '../assets/images/index.ts';
+import {  practicemgmt,  special , prac, pre, realtime, claims } from '../assets/images/index.ts';
 import ServiceModal from '../components/ServiceModal.js';
 import { dyadVideo } from '../assets/videos/index.ts';
 
@@ -99,7 +99,7 @@ const serviceDetails : Record<string, ServiceDetail>= {
       'Human Resources',
       'Technology Solutions',
     ],
-    img:  innovativetech
+    img:  practicemgmt
   },
   'Pre & Post Encounter': {
     title: 'Pre & Post Encounter',
