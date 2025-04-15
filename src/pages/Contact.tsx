@@ -1,4 +1,4 @@
-import React, { useState , useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import { ContactUs } from '../assets/images/index.ts'
 import ReCAPTCHA from "react-google-recaptcha";
 import { formSubmit } from '../services/service.ts';
@@ -13,7 +13,7 @@ interface FormData {
 }
 
 const Contact = () => {
-  const [isSubmitting,setIsSubmitting]= useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [isCaptchaValidated, setIscaptchaValidated] = useState<Boolean>(false);
   const [message, setMessage] = useState<string>("");
   const [isError, setIsError] = useState<boolean>(false);
@@ -31,7 +31,7 @@ const Contact = () => {
   const formatData = (data: any) => {
     // Convert "2025-04-16T17:12" → "2025-04-16 17:12"
     const formattedSchedule = data.schedule.replace("T", " ");
-  
+
     return {
       name: data.name,
       email: data.email,
@@ -49,23 +49,48 @@ const Contact = () => {
     formErrors.captcha = ""
   }
 
+  // Validation helpers
+  const validateEmail = (email: string) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
+
+  const validatePhone = (phone: string) => {
+    // Remove all non-digit characters first
+    const digitsOnly = phone.replace(/\D/g, '');
+    // Then check length (adjust as needed for your requirements)
+    return digitsOnly.length >= 10 && digitsOnly.length <= 15;
+  };
+
 
 
   const validateForm = () => {
     const errors: Record<string, string> = {};
     if (!formData.name.trim()) errors.name = "Name is required";
-    if (!formData.phone.trim()) errors.phone = "Phone number is required";
-    if (!formData.email.trim()) errors.email = "Email is required";
     if (!formData.organization.trim()) errors.organization = "organization/Facility name is required";
     if (!formData.message.trim()) errors.message = "Message is required";
     if (!isCaptchaValidated) errors.captcha = "Please complete the CAPTCHA";
+
+    // Phone validation
+    if (!formData.phone.trim()) {
+      errors.phone = "Phone number is required";
+    } else if (!validatePhone(formData.phone)) {
+      errors.phone = "Please enter a valid phone number (10-15 digits)";
+    }
+
+    // Email validation
+    if (!formData.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!validateEmail(formData.email)) {
+      errors.email = "Please enter a valid email address";
+    }
 
     if (!formData.schedule.trim()) {
       errors.schedule = "Schedule time is required";
     } else {
       const selectedTime = new Date(formData.schedule).getTime();
       const currentTime = new Date().getTime();
-      
+
       // Check if time is in the past
       if (selectedTime <= currentTime) {
         errors.schedule = "Please select a future time";
@@ -79,7 +104,7 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-   
+
 
 
     if (!validateForm()) {
@@ -91,7 +116,7 @@ const Contact = () => {
     try {
       setIsSubmitting(true);
       const formattedData = formatData(formData);
-      
+
       const data = await formSubmit(formattedData);
       if (data) {
         setIsError(false);
@@ -256,30 +281,30 @@ const Contact = () => {
                     onChange={handleChange}
                     className="form-input"
                     placeholder="Schedule time"
-                    min={new Date().toISOString().slice(0, 16)} 
+                    min={new Date().toISOString().slice(0, 16)}
                   />
                   {formErrors.schedule && (
                     <p className="text-red-500 text-sm mt-1">{formErrors.schedule}</p>
                   )}
                 </div>
 
-                <ReCAPTCHA
-                
-                ref={recaptchaRef}
-                  sitekey={import.meta.env.VITE_SITE_KEY}
-                  onChange={onCaptchaSuccess}
-                  size="normal"
-                />
-                {formErrors.captcha && (
-                  <p className="text-red-500 text-sm mt-1">{formErrors.captcha}</p>
-                )}
+              
+                  <ReCAPTCHA
+                    ref={recaptchaRef}
+                    sitekey={import.meta.env.VITE_SITE_KEY}
+                    onChange={onCaptchaSuccess}
+                    size="normal"
+                  />
+                  {formErrors.captcha && (
+                    <p className="text-red-500 text-sm mt-1">{formErrors.captcha}</p>
+                  )}
 
-                {/* Status message */}
-                {message && (
-                  <p className={`text-sm ${isError ? 'text-red-500' : 'text-green-500'}`}>
-                    {message}
-                  </p>
-                )}
+                  {/* Status message */}
+                  {message && (
+                    <p className={`text-sm ${isError ? 'text-red-500' : 'text-green-500'}`}>
+                      {message}
+                    </p>
+                  )}
 
                 <button
                   type="submit"
