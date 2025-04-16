@@ -113,8 +113,8 @@ function App() {
 
   return (
     <Router >
-      <div className="min-h-screen bg-white cursor-custom">
       <CustomCursor />
+      <div className="min-h-screen bg-white cursor-custom">
         <Navbar whatWeDoItems={whatWeDoItems} aboutUsItems={aboutUsItems}  onServiceClick={handleServiceClick} onAboutClick={handleAboutClick}/>
         <Routes>
           <Route path="/" element={<Home whatWeDoItems={whatWeDoItems} 
