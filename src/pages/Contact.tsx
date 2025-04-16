@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { ContactUs } from '../assets/images/index.ts'
+import { contactus } from '../assets/images/index.ts'
 import ReCAPTCHA from "react-google-recaptcha";
 import { formSubmit } from '../services/service.ts';
 
@@ -318,7 +318,7 @@ const Contact = () => {
 
             <div>
               <img
-                src={ContactUs}
+                src={contactus}
                 alt="Contact Support"
                 className="w-full h-[400px] object-cover rounded-lg shadow-lg mb-8"
               />

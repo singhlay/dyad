@@ -8,7 +8,7 @@ import whydyad from './whydyad.jpeg'
 import ourprocess from './ourprocess.webp'
 import hero from './hero.png'
 import LogoDark from './LogoDark.png'
-import ContactUs from './contactus.jpg'
+import contactus from './ourstory.png'
 import ContactUsBackground from './ContactUsBackground.png'
 import cursor from './cursor.png'
 import prac from './prac.jpg'
@@ -27,7 +27,7 @@ export {
   ourprocess,
   hero,
   LogoDark,
-  ContactUs,
+  contactus,
   ContactUsBackground,
   cursor,
   pre,
