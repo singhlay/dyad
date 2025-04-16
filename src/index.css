@@ -83,12 +83,14 @@ background:
 }
 
 .btn-outline {
-  @apply px-2  py-2 xl:py-2.5 text-center border border-primary text-primary font-medium rounded-sm hover:bg-primary hover:text-white transition-colors text-[16px] xl:text-[18px] lg:w-[145px] xl:w-[170px];
+  @apply px-2  py-2 xl:py-2.5 text-center border border-primary text-primary font-medium rounded-sm hover:bg-primary hover:text-white transition-colors text-[16px] xl:text-[18px] lg:w-[145px] xl:w-[170px]
+  hidden
+  ;
 }
 
 .btn-primary {
   @apply px-2 xl:px-9 py-2 xl:py-2.5 bg-primary border border-primary text-white font-medium rounded-sm hover:bg-blue-700 transition-colors 
-  text-[16px] xl:text-[18px] text-nowrap lg:w-[145px] xl:w-[170px] text-center
+  text-[16px] xl:text-[18px] text-nowrap lg:w-[145px] xl:w-[170px] text-center 
   ;
 }
 
