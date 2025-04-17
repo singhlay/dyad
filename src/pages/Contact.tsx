@@ -166,19 +166,22 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white pt-20">
+    <div className="min-h-screen bg-white pt-32">
       {/* Contact Hero Section */}
-      <section className="contact-section py-16">
+      <section className="contact-section ">
       </section>
 
       {/* Contact Form Section */}
       <section className="py-16">
         <div className="max-w-[1440px] mx-auto px-8">
+         
+         <div>
+         <h2 className="text-2xl font-medium">Providers or Administrators:</h2>
+         <p className="text-2xl font-medium mb-6">Please Fill Out The Form Below</p>
+         </div>
+          
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div>
-              <h2 className="text-2xl font-medium">Providers or Administrators:</h2>
-              <p className="text-2xl font-medium mb-6">Please Fill Out The Form Below</p>
-
+           
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="form-group">
                   <label htmlFor="name" className="form-label">
@@ -314,15 +317,17 @@ const Contact = () => {
                   {isSubmitting ? "Submitting..." : "Submit"}
                 </button>
               </form>
-            </div>
 
-            <div>
+              <div>
               <img
                 src={contactus}
                 alt="Contact Support"
                 className="w-full h-[400px] object-cover rounded-lg shadow-lg mb-8"
               />
             </div>
+            
+
+          
           </div>
         </div>
       </section>

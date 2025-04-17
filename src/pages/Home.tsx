@@ -233,7 +233,7 @@ const Home: React.FC<HomeProps> = ({ aboutUsItems, setSelectedServiceAbout}) => 
       <section id="about" className="py-16 md:py-24 bg-gray-50">
         <div className="max-w-[1440px] mx-auto px-4 md:px-8">
           <h2 className="text-[32px] md:text-[40px] leading-[1.3] font-bold mb-6 text-center">About Us</h2>
-          <p className="clamped-text text-[16px] md:text-[22px] leading-[1.6] text-gray-600  mx-auto  mb-12 md:mb-16 max-w-[1190px]" style={{padding : "0px"}}>
+          <p className="max-w-[1300px] clamped-text text-[16px] md:text-[22px] leading-[1.6] text-gray-600  mx-auto  mb-12 md:mb-16 px-4 md:px-4 lg:px-5 xl:px-12 ">
           We operate at the intersection of expertise, technology, and trust, bringing deep industry knowledge and strategic insight to every engagement. Grounded in transparency and integrity, we align with those who prioritize operational excellence and long-term sustainability. Our approach is straightforward: no shortcuts, just a commitment to delivering meaningful results.
           </p>
           <div className="grid h-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
@@ -254,7 +254,7 @@ const Home: React.FC<HomeProps> = ({ aboutUsItems, setSelectedServiceAbout}) => 
       <section id="services" className="py-16 md:py-24">
         <div className="max-w-[1440px] mx-auto px-4 md:px-8">
           <h2 className="text-[32px] md:text-[40px] leading-[1.3] font-bold mb-6 text-center">Our Services</h2>
-          <p className="text-[16px] md:text-[22px] leading-[1.6] text-gray-600 mx-auto  mb-12 md:mb-16 clamped-text max-w-[1190px]" style={{padding : "0px"}}>
+          <p className="max-w-[1300px] clamped-text text-[16px] md:text-[22px] leading-[1.6] text-gray-600  mx-auto  mb-12 md:mb-16 px-4 md:px-4 lg:px-5 xl:px-12 " >
           We set the standard for accuracy, efficiency, and value - delivering  faster turnarounds, unmatched precision, and measurable impact. Backed  by rigorous risk controls and uncompromising quality, our integrated  solutions go beyond excellence to redefine what’s possible. No  fragmentation - just a unified approach. Most services operate within  our full-service model, where seamless integration drives real value.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
