@@ -15,10 +15,12 @@
   @apply hidden sm:block 
 }
 
+
 /* Hide default cursor */
 * {
   cursor: none !important;
 }
+
 
 body {
   font-family: 'Prompt', sans-serif;

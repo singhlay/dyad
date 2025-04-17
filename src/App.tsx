@@ -8,6 +8,7 @@ import ServiceModal from './components/ServiceModal';
 import CustomCursor from './components/CustomCursor';
 import AboutModal from './components/AboutModal';
 import { ourstory , clarity , innotech ,physicianautonomy, whydyad, ourprocess} from './assets/images';
+import ErrorPage from './pages/ErrorPage';
 
 function App() {
   const [selectedService, setSelectedService] = useState<string | null>(null);
@@ -123,6 +124,7 @@ function App() {
                 setSelectedServiceAbout={setSelectedServiceAbout}/>} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/onboarding" element={<Onboarding />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
         {selectedService && (
           <ServiceModal
